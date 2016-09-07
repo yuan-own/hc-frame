@@ -1,0 +1,45 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "zip": "node zip.js",
+    "package": "node package.js",
+    "start": "node server.js",
+    "gulp": "node gulpfile.js",
+    "setpro": "set NODE_ENV=production",
+    "pro": "webpack --config webpack.product.config.js",
+    "press": "webpack -p --config webpack.press.config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.3.15",
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-react-hmre": "^1.1.1",
+    "browser-sync": "^2.14.0",
+    "browser-sync-webpack-plugin": "^1.1.2",
+    "del": "^2.2.2",
+    "expect": "^1.6.0",
+    "exports-loader": "^0.6.3",
+    "express": "^4.13.3",
+    "glob": "^7.0.6",
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-imagemin": "^3.0.3",
+    "gulp-less": "^3.1.0",
+    "gulp-minify-html": "^1.0.6",
+    "node-native-zip": "^1.1.0",
+    "script-loader": "^0.7.0",
+    "webpack": "^1.9.11",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-hot-middleware": "^2.9.1"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.3.14",
+    "zepto": "^1.2.0"
+  }
+}

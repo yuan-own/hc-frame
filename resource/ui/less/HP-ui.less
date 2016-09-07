@@ -1,0 +1,574 @@
+//通用变量
+@font-size-base:          1.4rem;
+@line-height-base:        1.428571429;
+@border-radius-base:      0.4rem;
+
+
+//通用可变样式
+.border-top-radius(@radius) {
+  border-top-right-radius: @radius;
+  border-top-left-radius: @radius;
+}
+.border-right-radius(@radius) {
+  border-bottom-right-radius: @radius;
+  border-top-right-radius: @radius;
+}
+.border-bottom-radius(@radius) {
+  border-bottom-right-radius: @radius;
+  border-bottom-left-radius: @radius;
+}
+.border-left-radius(@radius) {
+  border-bottom-left-radius: @radius;
+  border-top-left-radius: @radius;
+}
+//标题栏
+//标题栏变量
+@HP-ui--title-height:4rem;
+@HP-ui-title-color:#3d4145;
+.HP-ui-bar{
+  background-color: #ffffff;
+  width: 100%;
+  height: @HP-ui--title-height;
+  line-height: @HP-ui--title-height;
+  position: relative;
+}
+.HP-ui-bar-title{
+  display: block;
+  width: 100%;
+  font-size: @font-size-base;
+  color: @HP-ui-title-color;
+  text-align: center;
+  white-space: nowrap;
+}
+//带按钮标题栏
+.HP-ui-btn-left{
+  top: 1rem;
+  position: absolute;
+  border: 1px solid #0894ec;
+  color: #0894ec;
+  text-decoration: none;
+  text-align: center;
+  border-radius: @border-radius-base;
+  box-sizing: border-box;
+  background: none;
+  padding: 0 0.5rem;
+  margin: 0;
+  height: 2rem;
+  white-space: nowrap;
+  font-size: 0.7rem;
+  margin-left: 0.5rem;
+}
+.HP-ui-btn-right{
+  top: 1rem;
+  right: 0;
+  position: absolute;
+  border: 1px solid #0894ec;
+  color: #0894ec;
+  text-decoration: none;
+  text-align: center;
+  border-radius: @border-radius-base;
+  box-sizing: border-box;
+  background: none;
+  padding: 0 0.5rem;
+  margin: 0;
+  height: 2rem;
+  white-space: nowrap;
+  font-size: 0.7rem;
+  margin-right: 0.5rem;
+
+}
+
+//内容区
+.HP-ui{
+  padding: 2rem;
+}
+
+//button
+//button变量
+@HP-ui-btn-font-weight:                normal;
+@HP-ui-btn-default-color:              #333;
+@HP-ui-btn-default-bg:                 #fff;
+@HP-ui-btn-default-border:             #ccc;
+@btn-default-color:                    #333;
+@btn-border-radius-base:   4px;
+@HP-ui-btn-disabled:  #e5e5e5;
+
+
+@padding-base-vertical:     6px;
+@padding-base-horizontal:   12px;
+
+//button可变样式
+.button-variant(@color; @background; @border){
+  color:@color;
+  background-color: @background;
+  border-color: @border;
+}
+.button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius) {
+  padding: @padding-vertical @padding-horizontal;
+  font-size: @font-size;
+  line-height: @line-height;
+  border-radius: @border-radius;
+}
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow;
+  box-shadow: @shadow;
+}
+
+.HP-ui-btn{
+  display: inline-block;
+  font-weight: @HP-ui-btn-font-weight;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid transparent;
+  width: 100%;
+  height:4rem;
+  background-color: #e5e5e5;
+
+  touch-action: manipulation;//可以悬停在内容上，而不激活（点击）它
+  white-space: nowrap;//文本不进行换行
+  .button-size(@padding-base-vertical; @padding-base-horizontal; @font-size-base; @line-height-base; @btn-border-radius-base);
+}
+
+.HP-ui-btn-default{
+  .button-variant(@HP-ui-btn-default-color; @HP-ui-btn-default-bg; @HP-ui-btn-default-border);
+  width: 100%;
+  height:4rem;
+
+  &:active {
+    background-color: @dropdown-link-active-bg;
+  }
+}
+
+//带特殊含义的样式
+//成功
+.HP-ui-btn-success{
+  border-color: #4cd964;
+  color: #4cd964;
+}
+//warning
+.HP-ui-btn-waring{
+  border-color: #ff6600;
+  color: #ff6600;
+}
+//danger
+.HP-ui-btn-danger{
+  border-color: #f6383a;
+  color: #f6383a;
+}
+//不可点击
+.HP-ui-btn-disable{
+  background: @HP-ui-btn-disabled;
+  color: @HP-ui-btn-default-border;
+
+  &:active {
+    background-color: @HP-ui-btn-disabled;
+  }
+}
+//按钮组
+.HP-ui-buttons-row{
+  margin-bottom: 2rem;
+  display: flex;
+  background-color: #ffffff;
+
+}
+.HP-ui-button{
+  flex: 1;
+  text-align: center;
+  border: 1px solid #0894ec;
+  color: #0894ec;
+  text-decoration: none;
+  text-align: center;
+  line-height: 3rem;
+  padding: 0 0.5rem;
+  margin: 0;
+  height: 3rem;
+  white-space: nowrap;
+  font-size: 1.4rem;
+  //第一个和最后一个设置圆角
+  &:first-child {
+    .border-left-radius(@border-radius-base);
+    border-rigth:0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+    .border-right-radius(@border-radius-base);
+    border-left:0;
+  }
+}
+.active{
+  background-color: #0894ec;
+  color: white;
+}
+
+
+//列表组
+//列表组变量
+@list-group-bg:                 #fff;
+@list-group-border:             #ddd;
+@list-group-active-bg:          #f5f5f5;
+
+.HP-ui-list-group {
+  margin-bottom: 2rem;
+  padding-left: 0;
+  background: #ffffff;
+}
+.HP-ui-list-group-item{
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -1px;
+  background-color: @list-group-bg;
+  border: 1px solid @list-group-border;
+  font-size: @font-size-base;
+  height: 1.8rem;
+  line-height: 1.8rem;
+
+  //第一个和最后一个设置圆角
+  &:first-child {
+    .border-top-radius(@border-radius-base);
+  }
+  &:last-child {
+    margin-bottom: 0;
+    .border-bottom-radius(@border-radius-base);
+  }
+  //点击效果
+  &:active{
+    text-decoration: none;
+    background-color: @list-group-active-bg;
+  }
+}
+.HP-ui-list-group-badge{
+  display: inline-block;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #999;
+  border-radius: 10px;
+  float: right;
+}
+//多媒体列表组
+.HP-ui-list-media{
+  >li{
+    //点击效果
+    &:active{
+      text-decoration: none;
+      background-color: @list-group-active-bg;
+    }
+  }
+}
+.HP-ui-item-content{
+  padding: 10px 10px 8px;
+  position: relative;
+  display: -moz-box;
+  display: -webkit-box;
+  display: box;
+  >.HP-ui-item-media{
+    font-size: 0;
+    line-height: 0;
+    margin-right: 7px;
+    position: relative;
+  }
+  >.HP-ui-item-inner{
+    padding-left: 0.25rem;
+    position: relative;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    box-flex: 1;
+
+    padding-right: 1.5rem;
+    background-image: url(../fonts/arrow.png);
+    background-size: 1.7rem;
+    background-repeat: no-repeat;
+    background-position: 97% center;
+    background-position: -webkit-calc(100% - .5rem) center;
+    background-position: calc(100% - .5rem) center;
+
+  }
+}
+.HP-ui-item-after{
+  white-space: nowrap;
+  color: #5f646e;
+  text-align: right;
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+.HP-ui-item-title{
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 2.5rem;
+  float: left;
+}
+.HP-ui-item-subtitle{
+  font-size: 2rem;
+  clear: both;
+}
+
+.HP-ui-item-text{
+  font-size: 1.5rem;
+  color: #5f646e;
+  line-height: 2.1rem;
+  position: relative;
+  clear: both;
+
+}
+
+//输入框组
+//输入框组变量
+@input-color: #555;
+@input-group-addon-bg: #eee;
+@input-group-addon-border-color: #ccc;
+//输入框组容器
+.HP-ui-input-group{
+  border-collapse: separate;//如果有边框合并为单一边框
+}
+.HP-ui-list-block{
+  >ul>li{
+    border-bottom: 1px solid #e5e5e5;
+
+    &:last-child {
+      border-bottom: 0;
+      margin-bottom: 2rem;
+    }
+  }
+}
+//input
+.HP-ui-list-block-item-inner{
+  width: 100%;
+  margin-top: -0.4rem;
+  margin-bottom: -0.35rem;
+  padding: 10px 10px 8px;
+  position: relative;
+  display: -moz-box;
+  display: -webkit-box;
+  display: box;
+
+  >.HP-ui-list-block-item-title{
+    width: 20%;
+    height:3.15rem;
+    line-height: 3.15rem;
+    font-size: 1.85rem;
+  }
+
+  >.HP-ui-item-input{
+    width:100%;
+    >input{
+      box-sizing: border-box;
+      border: none;
+      background: none;
+      border-radius: 0 0 0 0;
+      box-shadow: none;
+      display: block;
+      padding: 0 0 0 0.25rem;
+      height: 3.15rem;
+      color: #3d4145;
+
+      position: relative;
+      padding-right: 1.5rem;
+      font-size: 1.85rem;
+      font-weight: 300;
+    }
+  }
+
+
+
+}
+
+//radio
+
+.HP-ui-input-group-radio +label{
+  position: relative;
+  display: inline-block;
+  z-index: 999;
+  width: 12px;
+  height: 15px;
+  padding: 0px 1rem;
+}
+
+.HP-ui-input-group-radio+label:before{
+  content:"";
+  color:#fff;
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border-radius: 15px;
+  position: absolute;
+  left: 4px;
+  display:block;
+  border: 1px solid #0894ec;
+}
+.HP-ui-input-group-radio:checked+label:before{
+  content:"";
+  background: #0894ec;
+}
+
+//checkbox
+
+.HP-ui-input-group-checkbox + label {
+  position: relative;
+  display: inline-block;
+  z-index: 999;
+  width: 12px;
+  height: 15px;
+  padding: 0px 1rem;
+}
+
+.HP-ui-input-group-checkbox + label:before {
+  content:"";
+  color:#fff;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border-radius: 15px;
+  position: absolute;
+  left: 4px;
+  display:block;
+  border: 1px solid #0894ec;
+}
+
+.HP-ui-input-group-checkbox:checked + label:before {
+  content:"";
+  background: #0894ec;
+
+}
+
+
+//tip
+.HP-ui-tip{
+  padding-top: 10px;
+  font-size: 14px;
+  color: #666;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 14px;
+  color: #666;
+  margin: 0 20px;
+  display: -webkit-box;
+  padding-left: 10px;
+  background: #fff;
+  border: 1px solid #dfdfdf;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: none;
+}
+.HP-ui-tip-triangle-top{
+  border-width: 0 12px 11px;
+  border-color: transparent transparent #dfdfdf;
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  position: absolute;
+  margin-top: -21px;
+}
+.HP-ui-tip-triangle-top>span{
+  border-width: 0 10px 10px;
+  border-color: transparent transparent #fff;
+
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+
+  margin-left: -10px;
+  padding-top: 2px;
+
+}
+.HP-ui-tip-triangle-bottom{
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-top: 14px solid #dfdfdf;
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  margin-top: 32px;
+}
+
+.HP-ui-tip-triangle-bottom>span{
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-top: 20px solid #ffffff;
+  display: block;
+  width: 0;
+  height: 0;
+  margin-left: -20px;
+  margin-top: -24px;
+
+}
+.HP-ui-tip-content{
+  -webkit-box-flex: 1;
+  overflow: hidden;
+}
+
+//Dropdown
+//Dropdown变量
+@dropdown-link-disabled-color:  #777;
+@dropdown-bg:                    #fff;
+@dropdown-fallback-border:       #ccc;
+@dropdown-border:                rgba(0,0,0,.15);
+@dropdown-link-color:           #333;
+@dropdown-link-active-bg:       #f5f5f5;
+
+
+//Dropdown最外层容器
+.HP-ui-dropdown{
+  position: relative;
+}
+
+//Dropdown ul
+.HP-ui-dropdown-menu{
+  position: absolute;
+  top:100%;
+  display: none;
+  float: left;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  font-size: @font-size-base;
+  text-align: left;
+  background-color: @dropdown-bg;
+  border: 1px solid @dropdown-border;
+  border-radius: @border-radius-base;
+  .box-shadow(0 6px 12px rgba(0,0,0,.175));
+  background-clip: padding-box;//规定背景的绘制区域  padding-box:背景被裁剪到内边距框
+  z-index: 10;
+
+
+  >li >a{
+    display: block;
+    padding: 3px 20px;
+    font-weight: normal;
+    line-height: @line-height-base;
+    color: @dropdown-link-color;
+    white-space: nowrap;
+
+    &:active {
+      text-decoration: none;
+      background-color: @dropdown-link-active-bg;
+    }
+  }
+}
+.open {
+  display: block;
+}
+
+//透明遮罩层
+.pop{
+  width: 100%;
+  height: 100%;
+}
+html,
+body{
+  height: 100%;
+}
+

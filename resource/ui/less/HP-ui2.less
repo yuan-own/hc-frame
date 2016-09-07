@@ -1,0 +1,227 @@
+//通用变量
+@font-size-base:          14px;
+@line-height-base:        1.428571429;
+@border-radius-base:       4px;
+
+
+//通用可变样式
+.border-top-radius(@radius) {
+    border-top-right-radius: @radius;
+    border-top-left-radius: @radius;
+}
+.border-right-radius(@radius) {
+    border-bottom-right-radius: @radius;
+    border-top-right-radius: @radius;
+}
+.border-bottom-radius(@radius) {
+    border-bottom-right-radius: @radius;
+    border-bottom-left-radius: @radius;
+}
+.border-left-radius(@radius) {
+    border-bottom-left-radius: @radius;
+    border-top-left-radius: @radius;
+}
+
+
+//button
+//button变量
+@HP-ui-btn-font-weight:                normal;
+@HP-ui-btn-default-color:              #333;
+@HP-ui-btn-default-bg:                 #fff;
+@HP-ui-btn-default-border:             #ccc;
+@btn-default-color:                    #333;
+@btn-border-radius-base:   4px;
+
+
+@padding-base-vertical:     6px;
+@padding-base-horizontal:   12px;
+
+//button可变样式
+.button-variant(@color; @background; @border){
+    color:@color;
+    background-color: @background;
+    border-color: @border;
+}
+.button-size(@padding-vertical; @padding-horizontal; @font-size; @line-height; @border-radius) {
+    padding: @padding-vertical @padding-horizontal;
+    font-size: @font-size;
+    line-height: @line-height;
+    border-radius: @border-radius;
+}
+.box-shadow(@shadow) {
+    -webkit-box-shadow: @shadow;
+    box-shadow: @shadow;
+}
+/*zhangchao246*/
+.back-ground-size(@size){
+    background-size: @size auto;
+    -webkit-background-size: @size auto;
+    -o-background-size: @size auto;
+    -moz-background-size: @size auto;
+    -ms-background-size: @size auto;
+}
+
+.hide{
+    display: none;
+}
+.HP-ui-nav-title{
+    position: relative;
+    padding-left: 2rem;
+    font-size: @font-size-base;
+    height: 3.8rem;
+    line-height: 3.8rem;
+    background: #fff;
+    >span{
+        position: absolute;
+        display: block;
+        width: 2.5rem;
+        height: 2.5rem;
+        top: 0.65rem;
+        right: 1rem;
+        &.HP-ui-nav-title-span1{
+            background: url(../fonts/pull-down.png) center no-repeat;
+            .back-ground-size(2rem);
+        }
+        &.HP-ui-nav-title-span2{
+            background: url(../fonts/close.png) center no-repeat;
+            .back-ground-size(1.5rem);
+        }
+    }
+}
+.HP-ui-nav-ul{
+    padding: 0.5rem 2rem;
+    background: #fff;
+    .HP-ui-nav-li{
+        font-size: @font-size-base;
+        height: 3.8rem;
+        line-height: 3.8rem;
+        color: #515151;
+        border-bottom: 1px solid #efefef;
+    }
+    .HP-ui-nav-li2{
+        border-bottom: none;
+    }
+}
+.HP-ui-progress{
+//    width: 30rem;
+//    height: 1.5rem;
+//    background: #e9e9e9;
+    border-radius: @border-radius-base;
+    overflow: hidden;
+    margin: 3rem auto;
+    position: relative;
+    text-align: center;
+    .HP-ui-progress-bar{
+        height: 100%;
+//        width: 50%;
+//        background: #18B0CC;
+        transition: width 0.5s;
+    }
+    >span{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 1.2rem;
+    }
+}
+
+.HP-ui-carousel{
+    position: relative;
+    .HP-ui-carousel-images{
+        width: 90%;
+        height: 20rem;
+        margin: 0 auto;
+        overflow: scroll;
+        >ul{
+            overflow: hidden;
+            width: 33.75rem;
+            height: 100%;
+            position: relative;
+            .HP-ui-carousel-image{
+                position: absolute;
+                float: left;
+                width: 33.75rem;
+                opacity: 0;
+                height: 100%;
+                >img{
+                    width: 100%;
+                    height: 100%;
+                }
+                transition: all 1s;
+            }
+            .active{
+                opacity: 1;
+                left: 0;
+            }
+            .next{
+                left: 33.75rem;
+                opacity: 0;
+            }
+            .prev{
+                left: -33.75rem;
+                opacity: 0;
+            }
+        }
+    }
+    .HP-ui-carousel-point{
+        position: absolute;
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        >li{
+            display: block;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            float: left;
+            margin-right: 1rem;
+            background: #d1d1d1;
+            &:last-child{
+                margin-right: 0;
+            }
+            &.current{
+                background: #18b0cc;
+            }
+        }
+    }
+    .HP-ui-carousel-left{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 3rem;
+        display: block;
+        width: 3rem;
+        height: 3rem;
+        background: url(../fonts/left.png) center no-repeat;
+        .back-ground-size(2rem);
+    }
+    .HP-ui-carousel-right{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 3rem;
+        display: block;
+        width: 3rem;
+        height: 3rem;
+        background: url(../fonts/right.png) center no-repeat;
+        .back-ground-size(2rem);
+    }
+}
+
+
+.HP-ui-carousel2{
+    margin: 0 auto;
+    width: 300px;
+    display: -webkit-box;
+    overflow: hidden;
+    .HP-ui-carousel2-images{
+        width: 1000px;
+        .HP-ui-carousel2-image{
+            float: left;
+            img{
+                width: 100%;
+            }
+        }
+    }
+}

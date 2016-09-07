@@ -1,0 +1,123 @@
+html,
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+li,
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td {
+    margin: 0;
+    padding: 0;
+}
+*{   
+    -webkit-touch-callout:none;  
+    -webkit-user-select:none;  
+    -khtml-user-select:none; 
+    -moz-user-select:none;
+    -ms-user-select:none;   
+    user-select:none;   
+}  
+html,
+body {
+    background: #f5f5f5;
+    color: #454545;
+    font-size: 62.5%;
+    font-family: Arial, "Microsoft YaHei", Helvetica, sans-serif;
+}
+
+
+address, caption, cite, code, dfn, em, strong, th, var, header {
+    font-style: normal;
+    font-weight: normal;
+}
+
+a {
+    color: #6a6a6a;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+img {
+    border: none;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+    outline: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+ol,
+ul,
+li,
+div,
+section,
+input{
+    -webkit-tap-highlight-color: transparent;
+}
+
+input{
+	 -webkit-user-select:auto; 
+}
+
+iframe{
+    display: none;
+}
+
+/* 清除浮动加上这个籄1�7 */
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+/*add ios button background-color */
+input[type=button], input[type=submit], input[type=file], button {
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+input[type=text] {
+    -webkit-tap-highlight-color: #fff;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
