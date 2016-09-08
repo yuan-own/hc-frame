@@ -2,8 +2,9 @@
 let webpack = require('webpack'),
     webpackDevMiddleware = require('webpack-dev-middleware'),
     webpackHotMiddleware = require('webpack-hot-middleware'),
-    config = require('./webpack.js'),
-    express = require('express');
+    config = require('./webpack'),
+    express = require('express'),
+    project=require("./config").packName;
 
 let app = new express(),
     port = 3000,
@@ -16,11 +17,18 @@ app.use(webpackHotMiddleware(compiler));
 app.use(express.static("."));
 
 app.get("/", function (req, res) {
-    res.redirect("/index.html");
+    res.redirect("/" + project + "/app/index.html");
 });
 
-app.get("/index.html", function (req, res) {
-    res.sendFile(__dirname + '/index.html');
+app.get("/" + project + "/app/index.html", function (req, res) {
+    res.sendFile(__dirname + '/app/index.html');
+});
+
+app.all("/" + project + "/*", function (req, res, next) {
+    var uri = url.parse(req.url).pathname;
+    var index = project.length + 1;
+    var sUrl = uri.substring(index);
+    res.sendFile(__dirname + sUrl);
 });
 
 app.listen(port, function (error) {

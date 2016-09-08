@@ -7,7 +7,8 @@ module.exports = {
     webapp: "webapp", //生成打包目录
     zip:"zip",//打包目录
     projects: ["hmcp-hp", "search"], //打包哪些文件（即更新包）
-    comModule:"app/scripts/modules/**/*.js", //模块入口文件
+    comModule:"app/scripts/modules/**/*module.js", //模块入口文件
+    packName:"hmcp-hp",//打包文件名
     environment: {
         develop: { //生产环境个人开发用
             protocol: "http",

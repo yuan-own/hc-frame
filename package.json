@@ -6,7 +6,7 @@
   "scripts": {
     "zip": "node zip.js",
     "package": "node package.js",
-    "start": "node server.js",
+    "start": "node config/server.js",
     "gulp": "node gulpfile.js",
     "setpro": "set NODE_ENV=production",
     "pro": "webpack --config webpack.product.config.js",

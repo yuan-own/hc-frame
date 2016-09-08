@@ -1,14 +1,13 @@
 "use strict";
 //引用库文件
 let path = require('path'),webpack = require('webpack'),BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
-    config=require("./config"),searchFiles=require("./search-files");
+    config=require("./config"),packfiles=require("./search-files");
 
-let webapp = config.webapp;
+let webapp = config.webapp,projects=config.projects;
 
-let allFiles = searchFiles();
-allFiles["clent-mytest"] = "webpack-hot-middleware/client";
+let allFiles = packfiles.fWebpak();
 
-console.log(allFiles);
+//allFiles["clent-mytest"] = "webpack-hot-middleware/client";
 
 let obj= {
     //devtool: 'cheap-module-eval-source-map',
@@ -16,9 +15,9 @@ let obj= {
     output: {
         path: path.join(__dirname, "../"+webapp),
         filename: '[name].js'
-        //publicPath: "/" + project + '/app/scripts/'
+        //publicPath: "/app/scripts/"
     },
-/*    plugins: [
+    plugins: [
         new BrowserSyncPlugin({
             port: 8000,
             //proxy: "test-api-health-cloud.pingan.com.cn",
@@ -30,17 +29,18 @@ let obj= {
                 }
             },
             files: [
-                "./app/htmls/!**!/!*.html",
-                "./app/scripts/!**!/!*.js",
-                "./app/styles/!**!/!*.css",
-                "./app/less/!**!/!*.less",
-                "./app/lib/!**!/!*.less",
-                "./app/lib/!**!/!*.css",
-                "./app/lib/!**!/!*.js"
+                "../*/app/htmls/**/*.html",
+                "../*/app/scripts/**/*.js",
+                "../*/app/scripts/**/*.jsx",
+                "../*/app/styles/**/*.css",
+                "../*/app/less/**/*.less",
+                "../*/app/lib/**/*.less",
+                "../*/app/lib/**/*.css",
+                "../*/app/lib/**/*.js"
             ],
             watchOptions: {
                 ignoreInitial: true,
-                ignored: './node_modules/!**!/!*.*'
+                ignored: '../node_modules/**/*.*'
             },
             logLevel: "debug",
             logPrefix: "我的项目测试log:",
@@ -52,24 +52,26 @@ let obj= {
         new webpack.ProvidePlugin({
             $: "zepto"
         })
-    ],*/
+    ],
     resolve: {
         extensions: ['', '.js', '.jsx']  //自动补全识别后缀
-    }
-/*    module: {
+    },
+    module: {
         loaders: [
             {
                 test: /\.js$/,
                 loaders: ['babel'],
                 exclude: /node_modules/,
-                include: path.join(__dirname, "/app/")
+                include: path.join(__dirname, "../*/app/")
             },
             {
                 test: require.resolve('zepto'),
                 loader: 'exports?window.$!script'
             }
         ]
-    }*/
+    }
 };
+
+//webpack(obj);
 
 module.exports=obj;
