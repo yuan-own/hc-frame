@@ -6,11 +6,11 @@
   "scripts": {
     "zip": "node zip.js",
     "package": "node package.js",
-    "start": "node config/server.js",
+    "start": "node server.js",
     "gulp": "node gulpfile.js",
     "setpro": "set NODE_ENV=production",
-    "pro": "webpack --config webpack.product.config.js",
-    "press": "webpack -p --config webpack.press.config.js"
+    "pro": "cross-env NODE_ENV=development webpack --config webpack.product.config.js",
+    "press": "cross-env NODE_ENV=production webpack -p --config webpack.press.config.js"
   },
   "author": "",
   "license": "ISC",

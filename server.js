@@ -1,10 +1,11 @@
 'use strict';
 let webpack = require('webpack'),
+    url=require("url"),
     webpackDevMiddleware = require('webpack-dev-middleware'),
     webpackHotMiddleware = require('webpack-hot-middleware'),
     config = require('./webpack'),
     express = require('express'),
-    project=require("./config").packName;
+    project=require("./config/config").packName;
 
 let app = new express(),
     port = 3000,
@@ -17,11 +18,11 @@ app.use(webpackHotMiddleware(compiler));
 app.use(express.static("."));
 
 app.get("/", function (req, res) {
-    res.redirect("/" + project + "/app/index.html");
+    res.redirect("/" + project + "/index.html");
 });
 
-app.get("/" + project + "/app/index.html", function (req, res) {
-    res.sendFile(__dirname + '/app/index.html');
+app.get("/" + project + "/index.html", function (req, res) {
+    res.sendFile(__dirname + '/index.html');
 });
 
 app.all("/" + project + "/*", function (req, res, next) {

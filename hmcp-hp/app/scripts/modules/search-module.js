@@ -7,7 +7,9 @@
 
 let obj = {
     init: function () {
-        alert();
+
+        console.log("adfasdfsadf");
+
     }
 };
 

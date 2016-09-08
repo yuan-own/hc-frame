@@ -2,6 +2,9 @@
 bin/
 bin-debug/
 bin-release/
+.idea/*
+node_modules/*
+.gitignore
 [Oo]bj/ # FlashDevelop obj
 [Bb]in/ # FlashDevelop bin
 
