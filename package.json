@@ -6,11 +6,10 @@
   "scripts": {
     "zip": "node zip.js",
     "package": "node package.js",
-    "start": "node server.js",
+    "start": "cross-env NODE_ENV=development node server.js",
     "gulp": "node gulpfile.js",
-    "setpro": "set NODE_ENV=production",
-    "pro": "cross-env NODE_ENV=development webpack --config webpack.product.config.js",
-    "press": "cross-env NODE_ENV=production webpack -p --config webpack.press.config.js"
+    "pro": "cross-env NODE_ENV=development webpack --config webpack.js",
+    "press": "cross-env NODE_ENV=production webpack -p --config webpack.js"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +21,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "browser-sync": "^2.14.0",
     "browser-sync-webpack-plugin": "^1.1.2",
+    "cross-env": "^2.0.1",
     "del": "^2.2.2",
     "expect": "^1.6.0",
     "exports-loader": "^0.6.3",

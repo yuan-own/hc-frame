@@ -4,8 +4,8 @@
 var webpack = require("webpack");
 var fs=require("fs");
 var stat = fs.stat;
-var config = require("./webpack.product.config");
-var pressconfig = require("./webpack.press.config");
+/*var config = require("./webpack.product.config");
+var pressconfig = require("./webpack.press.config");*/
 var press = require("./press-img-html-css");
 
 press.pressHtml();
@@ -13,6 +13,7 @@ press.pressLibCss();
 press.pressCss();
 press.pressImg();
 
+/*
 webpack(Object.create(config),function(err){
     if(err) return;
     console.log("js文件生成完成……");
@@ -23,8 +24,7 @@ webpack(Object.create(config),function(err){
         exists( './app/json', './web/json', copy );
     });
 });
-
-
+*/
 
 /*
  * 复制目录中的所有文件包括子目录

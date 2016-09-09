@@ -1,6 +1,6 @@
 "use strict";
 //引用库文件
-let path = require('path'), webpack = require('webpack'), BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
+let path = require('path'), webpack = require('webpack'),fs=require("fs"), BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
     config = require("./config/config"), fWebpak = require("./config/search-files");
 let webapp = config.webapp, projects = config.projects;
 //臭探所有入口文件
@@ -18,14 +18,65 @@ projects.forEach((item)=> {
 });
 
 let obj = {
-    //devtool: 'cheap-module-eval-source-map',
+    devtool: 'cheap-module-eval-source-map',
     entry: allFiles,
     output: {
         path: path.join(__dirname, "/" + webapp),
         filename: '[name].js',
         publicPath: "/hmcp-hp"
     },
-    plugins: [
+    plugins: [],
+    resolve: {
+        extensions: ['', '.js', '.jsx']  //自动补全识别后缀
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                loader: 'babel',
+                exclude: /node_modules/,
+                query: {
+                    presets: ['es2015']
+                },
+                include: path.resolve(__dirname)
+            },
+            {
+                test: require.resolve('zepto'),
+                loader: 'exports?window.$!script'
+            }
+        ]
+    }
+};
+
+let env = process.env.NODE_ENV;
+console.log("开启模式: \x1b[32m" + env + "\x1b[0m");
+//设置全局模式
+fs.writeFileSync("./config/temp.js","var env='"+"development"+"';module.exports=env;");
+if (env === 'production') {
+    // 将代码中的process.env.NODE_ENV替换为production，方便webpack压缩代码
+    obj.plugins.push(
+        new webpack.DefinePlugin({
+            "process.env": {
+                NODE_ENV: JSON.stringify(env)
+            }
+        })
+    );
+
+    obj.plugins.push(
+        new webpack.optimize.UglifyJsPlugin({
+            output:{
+                comments:false
+            },
+            compress:{
+                warnings:false
+            }
+        })
+    );
+
+    // 开启sourcemap
+    obj.devtool = "source-map";
+}else{
+    obj.plugins.push(
         new BrowserSyncPlugin({
             port: 8000,
             //proxy: "test-api-health-cloud.pingan.com.cn",
@@ -51,45 +102,6 @@ let obj = {
         new webpack.ProvidePlugin({
             $: "zepto"
         })
-    ],
-    resolve: {
-        extensions: ['', '.js', '.jsx']  //自动补全识别后缀
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.js$/,
-                loader: 'babel',
-                exclude: /node_modules/,
-                query: {
-                    presets: ['es2015']
-                },
-                include: path.resolve(__dirname)
-            },
-            {
-                test: require.resolve('zepto'),
-                loader: 'exports?window.$!script'
-            }
-        ]
-    }
-};
-
-var env = process.env.NODE_ENV;
-console.log("node env: \x1b[32m" + env + "\x1b[0m");
-if (env === 'production') {
-    // 将代码中的process.env.NODE_ENV替换为production，方便webpack压缩代码
-    obj.plugins.push(
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: JSON.stringify("production")
-            }
-        })
     );
-    // 开启sourcemap
-    obj.devtool = "source-map";
-    // // 开启文件hash	//暂不使用，上线时再开启
-    // config.output.filename = "[hash].bundle.js";
-    // config.output.chunkFilename = "[id].[hash].bundle.js";
 }
-
 module.exports = obj;
