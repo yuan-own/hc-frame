@@ -1,0 +1,173 @@
+/*zhangchao246*/
+.hide {
+  display: none;
+}
+.HP-ui-nav-title {
+  position: relative;
+  padding-left: 2rem;
+  font-size: 14px;
+  height: 3.8rem;
+  line-height: 3.8rem;
+  background: #fff;
+}
+.HP-ui-nav-title > span {
+  position: absolute;
+  display: block;
+  width: 2.5rem;
+  height: 2.5rem;
+  top: 0.65rem;
+  right: 1rem;
+}
+.HP-ui-nav-title > span.HP-ui-nav-title-span1 {
+  background: url(../fonts/pull-down.png) center no-repeat;
+  background-size: 2rem auto;
+  -webkit-background-size: 2rem auto;
+  -o-background-size: 2rem auto;
+  -moz-background-size: 2rem auto;
+  -ms-background-size: 2rem auto;
+}
+.HP-ui-nav-title > span.HP-ui-nav-title-span2 {
+  background: url(../fonts/close.png) center no-repeat;
+  background-size: 1.5rem auto;
+  -webkit-background-size: 1.5rem auto;
+  -o-background-size: 1.5rem auto;
+  -moz-background-size: 1.5rem auto;
+  -ms-background-size: 1.5rem auto;
+}
+.HP-ui-nav-ul {
+  padding: 0.5rem 2rem;
+  background: #fff;
+}
+.HP-ui-nav-ul .HP-ui-nav-li {
+  font-size: 14px;
+  height: 3.8rem;
+  line-height: 3.8rem;
+  color: #515151;
+  border-bottom: 1px solid #efefef;
+}
+.HP-ui-nav-ul .HP-ui-nav-li2 {
+  border-bottom: none;
+}
+.HP-ui-progress {
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 3rem auto;
+  position: relative;
+  text-align: center;
+}
+.HP-ui-progress .HP-ui-progress-bar {
+  height: 100%;
+  transition: width 0.5s;
+}
+.HP-ui-progress > span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+}
+.HP-ui-carousel {
+  position: relative;
+}
+.HP-ui-carousel .HP-ui-carousel-images {
+  width: 90%;
+  height: 20rem;
+  margin: 0 auto;
+  overflow: scroll;
+}
+.HP-ui-carousel .HP-ui-carousel-images > ul {
+  overflow: hidden;
+  width: 33.75rem;
+  height: 100%;
+  position: relative;
+}
+.HP-ui-carousel .HP-ui-carousel-images > ul .HP-ui-carousel-image {
+  position: absolute;
+  float: left;
+  width: 33.75rem;
+  opacity: 0;
+  height: 100%;
+  transition: all 1s;
+}
+.HP-ui-carousel .HP-ui-carousel-images > ul .HP-ui-carousel-image > img {
+  width: 100%;
+  height: 100%;
+}
+.HP-ui-carousel .HP-ui-carousel-images > ul .active {
+  opacity: 1;
+  left: 0;
+}
+.HP-ui-carousel .HP-ui-carousel-images > ul .next {
+  left: 33.75rem;
+  opacity: 0;
+}
+.HP-ui-carousel .HP-ui-carousel-images > ul .prev {
+  left: -33.75rem;
+  opacity: 0;
+}
+.HP-ui-carousel .HP-ui-carousel-point {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.HP-ui-carousel .HP-ui-carousel-point > li {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  float: left;
+  margin-right: 1rem;
+  background: #d1d1d1;
+}
+.HP-ui-carousel .HP-ui-carousel-point > li:last-child {
+  margin-right: 0;
+}
+.HP-ui-carousel .HP-ui-carousel-point > li.current {
+  background: #18b0cc;
+}
+.HP-ui-carousel .HP-ui-carousel-left {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 3rem;
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  background: url(../fonts/left.png) center no-repeat;
+  background-size: 2rem auto;
+  -webkit-background-size: 2rem auto;
+  -o-background-size: 2rem auto;
+  -moz-background-size: 2rem auto;
+  -ms-background-size: 2rem auto;
+}
+.HP-ui-carousel .HP-ui-carousel-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 3rem;
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  background: url(../fonts/right.png) center no-repeat;
+  background-size: 2rem auto;
+  -webkit-background-size: 2rem auto;
+  -o-background-size: 2rem auto;
+  -moz-background-size: 2rem auto;
+  -ms-background-size: 2rem auto;
+}
+.HP-ui-carousel2 {
+  margin: 0 auto;
+  width: 300px;
+  display: -webkit-box;
+  overflow: hidden;
+}
+.HP-ui-carousel2 .HP-ui-carousel2-images {
+  width: 1000px;
+}
+.HP-ui-carousel2 .HP-ui-carousel2-images .HP-ui-carousel2-image {
+  float: left;
+}
+.HP-ui-carousel2 .HP-ui-carousel2-images .HP-ui-carousel2-image img {
+  width: 100%;
+}

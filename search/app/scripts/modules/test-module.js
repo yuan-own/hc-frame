@@ -1,13 +1,7 @@
 /**
  * Created by ZHANGYUANYUAN031 on 2016-09-07.
  */
-require("zepto");
-var md5=require("../../../../resource/ajax-md5");
+var obj=require("../../../../resource/client.set");
 
-$(function () {
-    alert("afdasdf");
-})
-
-
-
+console.log(obj);
 

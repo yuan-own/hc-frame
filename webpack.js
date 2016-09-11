@@ -18,7 +18,7 @@ projects.forEach((item)=> {
 });
 
 let obj = {
-    devtool: 'cheap-module-eval-source-map',
+    // devtool: 'cheap-module-eval-source-map',
     entry: allFiles,
     output: {
         path: path.join(__dirname, "/" + webapp),
@@ -48,10 +48,10 @@ let obj = {
     }
 };
 
-let env = process.env.NODE_ENV;
-console.log("开启模式: \x1b[32m" + env + "\x1b[0m");
+let env = process.env.NODE_ENV || "development";
+console.log("开启模式: \x1b[32m" + env + "\x1b[0m"+"模式……");
 //设置全局模式
-fs.writeFileSync("./config/temp.js","var env='"+"development"+"';module.exports=env;");
+fs.writeFileSync("./config/temp.js","var env='"+env+"';module.exports=env;");
 if (env === 'production') {
     // 将代码中的process.env.NODE_ENV替换为production，方便webpack压缩代码
     obj.plugins.push(
@@ -72,9 +72,8 @@ if (env === 'production') {
             }
         })
     );
-
-    // 开启sourcemap
-    obj.devtool = "source-map";
+    //去掉测试代码
+    delete  allFiles["clent-mytest"];
 }else{
     obj.plugins.push(
         new BrowserSyncPlugin({
@@ -103,5 +102,7 @@ if (env === 'production') {
             $: "zepto"
         })
     );
+    // 开启sourcemap
+    obj.devtool = "source-map";
 }
 module.exports = obj;

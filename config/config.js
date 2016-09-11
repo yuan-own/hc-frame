@@ -7,15 +7,15 @@ module.exports = {
     version:"1.0.0",//版本名称
     webapp: "webapp", //生成打包目录
     zip:"zip",//打包目录
-    projects: ["hc-hyzt", "my-test"], //打包哪些文件（即更新包）
+    projects: ["hc-hyzt", "my-test","search"], //打包哪些文件（即更新包）
     comModule:"app/scripts/modules/**/*.js", //模块入口文件
     packName:"hmcp-hp",//打包文件名
     environment: {
         develop: { //开发环境个人开发用
             protocol: "http",
-            ip: "192.168.0.1",
+            ip: "127.0.0.1",
             port: "3000",
-            domain: ""
+            domain: "localhost"
         },
         test: { //测试环境
             protocol: "http",

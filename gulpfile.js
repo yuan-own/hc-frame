@@ -1,28 +1,32 @@
 /**
  * Created by ZHANGYUANYUAN031 on 2016-08-17.
  */
-var gulp = require("gulp");
-var less=require("gulp-less");
-var press=require("./press-img-html-css");
+let gulp = require("gulp"),
+    less = require("gulp-less"),
+    config = require("./config/config"),
+    projects = config.projects,
+    webapp = config.webapp,
+    press = require("./config/press-img-html-css");
 //放在以后用
 //var sass = require("gulp-sass");
 
+let aLessPath = ()=> {
+    return projects.map((prject)=> {
+        return "./" + prject + "/app/less/**/*.less";
+    });
+};
+
 //处理图片，并对图片进行压缩
-gulp.task('image',function(){
+gulp.task('image', function () {
     press.pressImg();
 });
 
-gulp.task('minhtml', function () {
+gulp.task('html', function () {
     press.pressHtml();
 });
 
-//压缩lib中的css文件
-gulp.task('minlibcss', function () {
-   return press.pressLibCss();
-});
-
 //压缩css,压缩后的文件放入dest/css
-gulp.task('mincss', function () {
+gulp.task('css', function () {
     return press.pressCss();
 });
 
@@ -33,31 +37,34 @@ gulp.task('clean', function (cb) {
 
 //编译less到css
 gulp.task("less", function () {
-    gulp.src('./app/less/*.less')
-        .pipe(less())
-        .pipe(gulp.dest("./app/styles"));
-
+    projects.forEach((prject)=> {
+        gulp.src("./" + prject + "/app/less/**/*.less").pipe(less()).pipe(gulp.dest("./" + prject + "/app/styles"));
+    });
 });
-
-gulp.task("libless", function () {
-    gulp.src('./app/lib/**/*.less')
+gulp.task("resource", function () {
+    gulp.src('./resource/**/*.less')
         .pipe(less())
-        .pipe(gulp.dest("./app/lib"));
+        .pipe(gulp.dest("./resource"));
 });
 
 
 //编译sass
 /*
-gulp.task('sass', function () {
-    gulp.src('./app/sass/!**!/!*.sass')
-        .pipe(sass())
-        .pipe(gulp.dest('./app/styles'));
-});
-*/
+ 以后会。
+ gulp.task('sass', function () {
+ gulp.src('./app/sass/!**!/!*.sass')
+ .pipe(sass())
+ .pipe(gulp.dest('./app/styles'));
+ });
+ */
 
 //监视文件的变化
 gulp.task("watch", function () {
-    gulp.watch("./app/**/*.less", ['less','libless']);
+    console.info("less 编译中……")
+    gulp.watch("./resource/**/*.less", ['resource']);
+    projects.forEach((pro)=> {
+        gulp.watch("./" + pro + "/**/*.less", ['less']);
+    });
 });
 
 

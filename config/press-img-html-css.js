@@ -1,34 +1,36 @@
 /**
  * Created by ZHANGYUANYUAN031 on 2016-08-17.
  */
-var gulp = require("gulp");
-var imagemin = require('gulp-imagemin');
-var minifyHtml = require("gulp-minify-html");
-var cssnano = require('gulp-cssnano');
-var del = require("del");
-module.exports={
-    pressImg:function(){
-        gulp.src('app/images/**/*').pipe(imagemin()).pipe(gulp.dest('web/images'));
-        gulp.src(["app/lib/**/*.png","app/lib/**/*.gif","app/lib/**/*.jpg"]).pipe(imagemin()).pipe(gulp.dest("web/lib"));
+let gulp = require("gulp"),
+    imagemin = require('gulp-imagemin'),
+    minifyHtml = require("gulp-minify-html"),
+    cssnano = require('gulp-cssnano'),
+    del = require("del"),
+    config=require("./config");
+let webapp=config.webapp,
+    projects=config.projects;
+
+module.exports = {
+    pressImg: function () { //打包工程图片并压缩
+        projects.forEach((project)=>{
+            gulp.src(["./"+project+"/app/images/**/*.png","./"+project+"/app/images/**/*.gif","./"+project+"/app/images/**/*.jpg"]).pipe(imagemin()).
+            pipe(gulp.dest('./'+webapp+"/"+project+"/app/images"));
+        });
+        gulp.src(["./resource/**/*.png","./resource/**/*.gif","./resource/**/*.jpg"]).pipe(imagemin()).pipe(gulp.dest("./"+webapp+"/resource"));
     },
     pressHtml: function () {
-        gulp.src('./app/htmls/**/*.html') // 要压缩的html文件
-            .pipe(minifyHtml()) //压缩
-            .pipe(gulp.dest('./web/htmls'));
-    },
-    pressLibCss:function(){
-        //压缩lib中的css文件
-        gulp.src('./app/lib/**/*.css')
-            .pipe(cssnano()) //压缩
-            .pipe(gulp.dest('./web/lib'));//输出
+        projects.forEach((project)=>{
+            gulp.src("./"+project+"/app/htmls/**/*.html").pipe(minifyHtml()).pipe(gulp.dest("./"+webapp+"/"+project+"/app/htmls"));
+        });
     },
     pressCss: function () {
-        gulp.src('./app/styles/**/*.css')
-            .pipe(cssnano()) //压缩
-            .pipe(gulp.dest('./web/styles'));//输出
+        projects.forEach((project)=>{
+            gulp.src("./"+project + "/app/styles/**/*.css").pipe(cssnano()).pipe(gulp.dest('./'+webapp + "/"+project+"/app/styles"));
+        });
+        gulp.src('./resource/**/*.css').pipe(cssnano()).pipe(gulp.dest('../'+webapp+"/resource"));//输出
     },
     del: function (cb) {
-        if(typeof cb == "function") del(["web"],cb);
-        else del(["web"]);
+        if (typeof cb == "function") del(["../"+webapp], cb);
+        else del(["../"+webapp]);
     }
 };

@@ -1,7 +1,8 @@
 var fs = require("fs");
 var zip = require("node-native-zip");
 var archive = new zip();
-var projectName = require("./config").name;
+var config = require("./config"), zipapp = config.zip, projectName = config.packName, version = config.version,
+    webapp = config.webapp, packName = config.packName;
 var aFills = [];
 
 function syncFunc(mypath) {
@@ -17,23 +18,23 @@ function syncFunc(mypath) {
     });
 }
 
-syncFunc("web");
+syncFunc(webapp);
 
 if (aFills.length > 0) {
-    var isExist=fs.existsSync("./zip");
-    if(!isExist){
+    var isExist = fs.existsSync("./zip");
+    if (!isExist) {
         fs.mkdirSync("./zip");
     }
     var myfiles = aFills.map(function (item, index) {
         return {
-            name: item.name.replace(/web\//, "app\/"),
+            name: item.name.replace(/webapp\//, ""),
             path: item.path
         }
     });
     archive.addFiles(myfiles, function (err) {
         if (err) return console.log("err while adding files", err);
         var buff = archive.toBuffer();
-        fs.writeFile("./zip/" + projectName + ".zip", buff, function () {
+        fs.writeFile("./" + zipapp + "/" + projectName + version + ".zip", buff, function () {
             console.log("zip打包完毕!!!");
         });
     });

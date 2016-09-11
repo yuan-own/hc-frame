@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: red;
+}
+div {
+  background: green;
+  font-size: 18px;
+  margin: 0;
+  position: absolute;
+}
