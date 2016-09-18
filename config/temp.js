@@ -1,1 +1,1 @@
-var env='development';module.exports=env;
+var env='test';module.exports=env;

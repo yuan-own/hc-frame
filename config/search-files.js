@@ -22,6 +22,18 @@ let fWebpak = ()=> {
             obj[name] = file;
         });
     }
+
+    /*begin*/
+    /*为了兼容老项目增加扫描范围*/
+    let apps = new Glob("./app/scripts/**/*.js", {sync: true}).found;
+    if (apps.length > 0) {
+        apps.forEach((file)=> {
+            let index = file.search(/\.js$/);
+            let name = file.substring(0, index);
+            obj[name] = file;
+        });
+    }
+    /*end*/
     return obj;
 };
 

@@ -7,7 +7,7 @@ module.exports = {
     version:"1.0.0",//版本名称
     webapp: "webapp", //生成打包目录
     zip:"zip",//打包目录
-    projects: ["hc-hyzt", "my-test","search"], //打包哪些文件（即更新包）
+    projects: ["resource","test"], //打包哪些文件（即更新包）
     comModule:"app/scripts/modules/**/*.js", //模块入口文件
     packName:"hmcp-hp",//打包文件名
     environment: {

@@ -1,21 +1,29 @@
 "use strict";
 //引用库文件
-let path = require('path'), webpack = require('webpack'),fs=require("fs"), BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
+let path = require('path'), webpack = require('webpack'), fs = require("fs"), BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
     config = require("./config/config"), fWebpak = require("./config/search-files");
 let webapp = config.webapp, projects = config.projects;
 //臭探所有入口文件
 let allFiles = fWebpak();
-allFiles["clent-mytest"] = "webpack-hot-middleware/client";
-
+let env = process.env.NODE_ENV || "development";
+console.log("开启模式: \x1b[32m" + env + "\x1b[0m" + "模式……");
+if(env =="development") allFiles["clent-mytest"] = "webpack-hot-middleware/client";
 //臭探ctrl+s 要监听文件
 let aResource = ["./resource/**/*.less", "./resource/**/*.css", "./resource/**/*.html", "./resource/**/*.js", "./resource/**/*.jsx"];
 projects.forEach((item)=> {
-    aResource.push("./" + item + "/app/htmls/**/*.html");
+    aResource.push("./" + item + "/app/**/*.html");
     aResource.push("./" + item + "/app/scripts/**/*.js");
     aResource.push("./" + item + "/app/scripts/**/*.jsx");
     aResource.push("./" + item + "/app/styles/**/*.css");
     aResource.push("./" + item + "/app/less/**/*.less");
 });
+
+/*begin*/
+    /*为了兼容老项目增加扫描范围*/
+
+aResource.push("./app/**/*.*");
+
+/*end*/
 
 let obj = {
     // devtool: 'cheap-module-eval-source-map',
@@ -48,10 +56,9 @@ let obj = {
     }
 };
 
-let env = process.env.NODE_ENV || "development";
-console.log("开启模式: \x1b[32m" + env + "\x1b[0m"+"模式……");
+
 //设置全局模式
-fs.writeFileSync("./config/temp.js","var env='"+env+"';module.exports=env;");
+fs.writeFileSync("./config/temp.js", "var env='" + env + "';module.exports=env;");
 if (env === 'production') {
     // 将代码中的process.env.NODE_ENV替换为production，方便webpack压缩代码
     obj.plugins.push(
@@ -64,17 +71,17 @@ if (env === 'production') {
 
     obj.plugins.push(
         new webpack.optimize.UglifyJsPlugin({
-            output:{
-                comments:false
+            output: {
+                comments: false
             },
-            compress:{
-                warnings:false
+            compress: {
+                warnings: false
             }
         })
     );
     //去掉测试代码
     delete  allFiles["clent-mytest"];
-}else{
+} else {
     obj.plugins.push(
         new BrowserSyncPlugin({
             port: 8000,

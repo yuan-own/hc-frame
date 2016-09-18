@@ -1,6 +1,7 @@
 /**
  * Created by ZHANGYUANYUAN031 on 2016-08-17.
  */
+    'use strict';
 let gulp = require("gulp"),
     less = require("gulp-less"),
     config = require("./config/config"),
@@ -9,12 +10,6 @@ let gulp = require("gulp"),
     press = require("./config/press-img-html-css");
 //放在以后用
 //var sass = require("gulp-sass");
-
-let aLessPath = ()=> {
-    return projects.map((prject)=> {
-        return "./" + prject + "/app/less/**/*.less";
-    });
-};
 
 //处理图片，并对图片进行压缩
 gulp.task('image', function () {
